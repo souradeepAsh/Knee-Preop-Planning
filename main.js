@@ -1,7 +1,7 @@
-import * as THREE from 'three';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-// import { STLLoader } from 'three/examples/jsm/loaders/STLLoader.js';
-import { TransformControls } from 'three/examples/jsm/controls/TransformControls.js';
+import * as THREE from 'https://cdnjs.cloudflare.com/ajax/libs/three.js/0.167.1/three.module.js';
+import { OrbitControls } from 'https://threejsfundamentals.org/threejs/resources/threejs/r122/examples/jsm/controls/OrbitControls.js';
+import { STLLoader } from 'https://threejsfundamentals.org/threejs/resources/threejs/r122/examples/jsm/loaders/STLLoader.js';
+import { TransformControls } from 'https://threejsfundamentals.org/threejs/resources/threejs/r122/examples/jsm/controls/TransformControls.js';
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
@@ -21,7 +21,7 @@ scene.add(light);
 const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
 directionalLight.position.set(1, 1, 1).normalize();
 scene.add(directionalLight);
-// const loader = new STLLoader();
+const loader = new STLLoader();
 const raycaster = new THREE.Raycaster();
 const mouse = new THREE.Vector2();
 
@@ -625,34 +625,26 @@ function addButtonsToModel(mesh, annotations, boneName) {
 }
 function loadModel(url, name, position, scale, rotation, color, annotations) {
   return new Promise((resolve, reject) => {
-    import('three/examples/jsm/loaders/STLLoader.js').then((module) => {
-      const STLLoader = module.STLLoader;
-
-      const loader = new STLLoader();
-      loader.load(url, function (geometry) {
-        console.log(`${name} model loaded`);
-        const material = new THREE.MeshPhongMaterial({
-          color: color,
-          clippingPlanes: [],
-          clipShadows: true
-        });
-        const mesh = new THREE.Mesh(geometry, material);
-        mesh.position.set(position.x, position.y, position.z);
-        mesh.scale.set(scale.x, scale.y, scale.z);
-        mesh.rotation.set(rotation.x, rotation.y, rotation.z);
-        scene.add(mesh);
-
-        boneMeshes[name] = mesh;
-
-        addButtonsToModel(mesh, annotations, name);
-        updateResectionVisibility();
-        resolve(mesh);
-      }, undefined, function (error) {
-        console.error(`Error loading ${name} model:`, error);
-        reject(error);
+    loader.load(url, function (geometry) {
+      console.log(`${name} model loaded`);
+      const material = new THREE.MeshPhongMaterial({ 
+        color: color,
+        clippingPlanes: [], // Initialize with empty clipping planes
+        clipShadows: true
       });
-    }).catch(error => {
-      console.error('Error importing STLLoader:', error);
+      const mesh = new THREE.Mesh(geometry, material);
+      mesh.position.set(position.x, position.y, position.z);
+      mesh.scale.set(scale.x, scale.y, scale.z);
+      mesh.rotation.set(rotation.x, rotation.y, rotation.z);
+      scene.add(mesh);
+      
+      boneMeshes[name] = mesh;
+      
+      addButtonsToModel(mesh, annotations, name);
+      updateResectionVisibility(); // Update visibility after loading each model
+      resolve(mesh);
+    }, undefined, function (error) {
+      console.error(`Error loading ${name} model:`, error);
       reject(error);
     });
   });
@@ -901,18 +893,18 @@ function updateToggleButtonStyle() {
 }
 
 
-// Dynamic loading of models
+// 3D Models Placement...............................
 Promise.all([
-  loadModel('/public/Right_Femur.stl', 'Right Femur', { x: 0, y: 0, z: 0 },
-    { x: 0.01, y: 0.01, z: 0.01 },
-    { x: Math.PI / -2, y: 0, z: 0 },
-    0x76b5c5,
-    annotationsForFemur),
-  loadModel('/public/Right_Tibia.stl', 'Right Tibia', { x: 0.17, y: -0.15, z: 0 },
-    { x: 0.01, y: 0.01, z: 0.01 },
-    { x: Math.PI / -2, y: 0, z: 0 },
-    0xd2721e,
-    annotationsForTibia)
+  loadModel('/public/Right_Femur.stl', 'Right Femur', { x: 0, y: 0, z: 0 }, 
+                                                      { x: 0.01, y: 0.01, z: 0.01 },
+                                                      { x: Math.PI / -2, y: 0, z: 0 },
+                                                      0x76b5c5,
+                                                      annotationsForFemur),
+  loadModel('/public/Right_Tibia.stl', 'Right Tibia', { x: 0.17, y: -0.15, z: 0 }, 
+                                                      { x: 0.01, y: 0.01, z: 0.01 },
+                                                      { x: Math.PI / -2, y: 0, z: 0 },
+                                                      0xd2721e,
+                                                      annotationsForTibia)
 ]).then(() => {
   initializeScene();
 }).catch(error => {

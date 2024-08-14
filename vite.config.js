@@ -1,18 +1,27 @@
 // vite.config.js
 import { defineConfig } from 'vite';
+import { visualizer } from 'rollup-plugin-visualizer';
 
 export default defineConfig({
+  plugins: [
+    visualizer({
+      open: true,
+      gzipSize: true,
+      brotliSize: true,
+    }),
+  ],
   build: {
     rollupOptions: {
       output: {
-        // Split node_modules into a separate chunk
         manualChunks(id) {
           if (id.includes('node_modules')) {
+            if (id.includes('three/examples/jsm/loaders/STLLoader.js')) {
+              return 'three-stl-loader';
+            }
             return 'vendor';
           }
         },
       },
-      // Increase chunk size warning limit
       chunkSizeWarningLimit: 1000, // Set this according to your needs (in kB)
     },
   },
