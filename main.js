@@ -1,7 +1,7 @@
-import * as THREE from 'https://cdnjs.cloudflare.com/ajax/libs/three.js/0.167.1/three.module.js';
-import { OrbitControls } from 'https://threejsfundamentals.org/threejs/resources/threejs/r122/examples/jsm/controls/OrbitControls.js';
-import { STLLoader } from 'https://threejsfundamentals.org/threejs/resources/threejs/r122/examples/jsm/loaders/STLLoader.js';
-import { TransformControls } from 'https://threejsfundamentals.org/threejs/resources/threejs/r122/examples/jsm/controls/TransformControls.js';
+import * as THREE from 'three';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import { STLLoader } from 'three/examples/jsm/loaders/STLLoader.js';
+import { TransformControls } from 'three/examples/jsm/controls/TransformControls.js';
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
