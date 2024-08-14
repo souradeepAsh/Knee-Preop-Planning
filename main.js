@@ -625,16 +625,15 @@ function addButtonsToModel(mesh, annotations, boneName) {
 }
 function loadModel(url, name, position, scale, rotation, color, annotations) {
   return new Promise((resolve, reject) => {
-    // Dynamically import the STLLoader
     import('three/examples/jsm/loaders/STLLoader.js').then((module) => {
-      const STLLoader = module.STLLoader; // Correctly reference the STLLoader
+      const STLLoader = module.STLLoader;
 
-      const loader = new STLLoader(); // Create a new instance of STLLoader
+      const loader = new STLLoader();
       loader.load(url, function (geometry) {
         console.log(`${name} model loaded`);
         const material = new THREE.MeshPhongMaterial({
           color: color,
-          clippingPlanes: [], // Initialize with empty clipping planes
+          clippingPlanes: [],
           clipShadows: true
         });
         const mesh = new THREE.Mesh(geometry, material);
@@ -646,7 +645,7 @@ function loadModel(url, name, position, scale, rotation, color, annotations) {
         boneMeshes[name] = mesh;
 
         addButtonsToModel(mesh, annotations, name);
-        updateResectionVisibility(); // Update visibility after loading each model
+        updateResectionVisibility();
         resolve(mesh);
       }, undefined, function (error) {
         console.error(`Error loading ${name} model:`, error);
