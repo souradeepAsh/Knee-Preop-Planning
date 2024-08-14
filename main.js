@@ -1,7 +1,8 @@
 import * as THREE from 'https://cdnjs.cloudflare.com/ajax/libs/three.js/0.167.1/three.module.js';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import { STLLoader } from 'three/examples/jsm/loaders/STLLoader.js';
-import { TransformControls } from 'three/examples/jsm/controls/TransformControls.js';
+import { OrbitControls } from 'https://threejsfundamentals.org/threejs/resources/threejs/r122/examples/jsm/controls/OrbitControls.js';
+import { STLLoader } from 'https://threejsfundamentals.org/threejs/resources/threejs/r122/examples/jsm/loaders/STLLoader.js';
+import { TransformControls } from 'https://threejsfundamentals.org/threejs/resources/threejs/r122/examples/jsm/controls/TransformControls.js';
+
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
   75, 
@@ -894,12 +895,12 @@ function updateToggleButtonStyle() {
 
 // 3D Models Placement...............................
 Promise.all([
-  loadModel('Right_Femur.stl', 'Right Femur', { x: 0, y: 0, z: 0 }, 
+  loadModel('/public/Right_Femur.stl', 'Right Femur', { x: 0, y: 0, z: 0 }, 
                                                       { x: 0.01, y: 0.01, z: 0.01 },
                                                       { x: Math.PI / -2, y: 0, z: 0 },
                                                       0x76b5c5,
                                                       annotationsForFemur),
-  loadModel('Right_Tibia.stl', 'Right Tibia', { x: 0.17, y: -0.15, z: 0 }, 
+  loadModel('/public/Right_Tibia.stl', 'Right Tibia', { x: 0.17, y: -0.15, z: 0 }, 
                                                       { x: 0.01, y: 0.01, z: 0.01 },
                                                       { x: Math.PI / -2, y: 0, z: 0 },
                                                       0xd2721e,
