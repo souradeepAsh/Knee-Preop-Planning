@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Model Viewer with Controls</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div>Knee Preop Planning</div>
+    </div>
+
+    <div id="sprite-table">
+        <table>
+            <tr>
+                <th>Index</th>
+                <th>Name</th>
+            </tr>
+            <tr>
+                <td data-index="1">1</td>
+                <td data-name="Hip Center">Hip Center</td>
+            </tr>
+            <tr>
+                <td data-index="2">2</td>
+                <td data-name="Femur Proximal Canal">Femur Proximal Canal</td>
+            </tr>
+            <tr>
+                <td data-index="3">3</td>
+                <td data-name="Femur Distal Canal">Femur Distal Canal</td>
+            </tr>
+            <tr>
+                <td data-index="4">4</td>
+                <td data-name="Medial Epicondyle">Medial Epicondyle</td>
+            </tr>
+            <tr>
+                <td data-index="5">5</td>
+                <td data-name="Lateral Epicondyle">Lateral Epicondyle</td>
+            </tr>
+            <tr>
+                <td data-index="6">6</td>
+                <td data-name="Distal Medial Pt">Distal Medial Pt</td>
+            </tr>
+            <tr>
+                <td data-index="7">7</td>
+                <td data-name="Distal Lateral Pt">Distal Lateral Pt</td>
+            </tr>
+            <tr>
+                <td data-index="8">8</td>
+                <td data-name="Posterior Medial Pt">Posterior Medial Pt</td>
+            </tr>
+            <tr>
+                <td data-index="9">9</td>
+                <td data-name="Posterior Lateral Pt">Posterior Lateral Pt</td>
+            </tr>
+        </table>
+        <button id="updateButton" disabled style="background-color: #cccccc; color: #666666;">
+            Update
+        </button>
+        <button id="createPlaneButton" disabled>
+            Create Plane
+        </button>
+    </div>
+
+    <div id="controls">
+        <div class="control-group">
+            <h3>Varus/Valgus</h3>
+            <button class="decrement">-</button>
+            <span class="value">3°</span>
+            <button class="increment">+</button>
+        </div>
+        <div class="control-group">
+            <h3>Flexion/Extension</h3>
+            <button class="decrement">-</button>
+            <span class="value">3°</span>
+            <button class="increment">+</button>
+        </div>
+        <div class="control-group">
+            <h3>Distal Medial Resection</h3>
+            <button class="decrement">-</button>
+            <span class="value">10 mm</span>
+            <button class="increment">+</button>
+        </div>
+        <div class="control-group">
+            <h3>Resection Visibility</h3>
+            <button id="resectionToggle">Toggle</button>
+        </div>
+    </div>
+
+    <div id="distanceDisplay">
+        <div class="distanceBox">
+            <h3>Medial Distance</h3>
+            <div id="medialDistance" class="distanceValue">.</div>
+        </div>
+        <div class="distanceBox">
+            <h3>Lateral Distance</h3>
+            <div id="lateralDistance" class="distanceValue">.</div>
+        </div>
+    </div>
+    
+    <div id="plane-controls">
+        <h3>Plane Visibility</h3>
+        <div class="button-container">
+            <button id="mechanicalAxisPlaneToggle" disabled>Mechanical Axis Plane</button>
+            <button id="varusValgusPlaneToggle" disabled>Varus/Valgus Plane</button>
+            <button id="flexionExtensionPlaneToggle" disabled>Flexion/Extension Plane</button>
+            <button id="distalMedialPlaneToggle" disabled>Distal Medial Plane</button>
+            <button id="distalResectionPlaneToggle" disabled>Distal Resection Plane</button>
+        </div>
+    </div>
+
+    <script type="module" src="main.js"></script>
+</body>
+
+</html>
