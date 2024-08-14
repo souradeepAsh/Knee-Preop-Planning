@@ -374,7 +374,6 @@ function enableCreatePlaneButton() {
 }
 
 
-
 // Create TEA Line on the Plane
 function projectTEAOntoPlane(plane, medialEpicondyle, lateralEpicondyle) {
   const planeNormal = plane.normal;
@@ -895,12 +894,12 @@ function updateToggleButtonStyle() {
 
 // 3D Models Placement...............................
 Promise.all([
-  loadModel('/public/Right_Femur.stl', 'Right Femur', { x: 0, y: 0, z: 0 }, 
+  loadModel('Right_Femur.stl', 'Right Femur', { x: 0, y: 0, z: 0 }, 
                                                       { x: 0.01, y: 0.01, z: 0.01 },
                                                       { x: Math.PI / -2, y: 0, z: 0 },
                                                       0x76b5c5,
                                                       annotationsForFemur),
-  loadModel('/public/Right_Tibia.stl', 'Right Tibia', { x: 0.17, y: -0.15, z: 0 }, 
+  loadModel('Right_Tibia.stl', 'Right Tibia', { x: 0.17, y: -0.15, z: 0 }, 
                                                       { x: 0.01, y: 0.01, z: 0.01 },
                                                       { x: Math.PI / -2, y: 0, z: 0 },
                                                       0xd2721e,
